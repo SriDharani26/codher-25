@@ -43,6 +43,31 @@ def login():
     else:
         return jsonify({"error": "Invalid credentials"}), 401
 
+@app.route('/addproduct', methods=['POST'])
+def add_product():
+    data = request.get_json()
+    product_id = data.get('product_id')
+    product_name = data.get('product_name')
+    
+
+    if not product_id or not product_name:
+        return jsonify({"error": "All fields are required"}), 400
+
+    product = {
+        "product_id": product_id,
+        "product_name": product_name
+    }
+
+    db.products.insert_one(product)
+    return jsonify({"status": "success"}), 201
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    products = list(db.products.find({}, {'_id': 0}))
+    if not products:
+        return jsonify({"error": "No products found"}), 404
+    return jsonify(products), 200
+
 
 
 if __name__ == '__main__':
