@@ -63,6 +63,43 @@ def add_product():
     db.products.insert_one(product)
     return jsonify({"status": "success"}), 201
 
+@app.route('/createuser', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    email_id = data.get('email')
+    password = data.get('password')
+    private_key = data.get('private_key')
+    role = data.get('role')
+
+    if not email_id or not password or not role:
+        return jsonify({"error": "All fields are required"}), 400
+
+    prefix = "M" if role.lower() == "manufacturer" else "O"
+
+    last_user = db.users.find_one(
+        {"user_id": {"$regex": f"^{prefix}\\d{{4}}$"}},
+        sort=[("user_id", -1)]
+    )
+
+    if last_user and "user_id" in last_user:
+        last_number = int(last_user["user_id"][1:])
+        new_number = last_number + 1
+    else:
+        new_number = 1
+
+    user_id = f"{prefix}{new_number:04d}"
+
+    user = {
+        "user_id": user_id,
+        "email": email_id,
+        "password": password,
+        "private_key": private_key,
+        "role": role
+    }
+
+    db.users.insert_one(user)
+    return jsonify({"status": "success"}), 201
+
 
 @app.route('/product', methods=['GET'])
 def get_product():

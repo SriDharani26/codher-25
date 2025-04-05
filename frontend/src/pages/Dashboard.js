@@ -3,7 +3,7 @@ import { createUser } from "../services/api"; // Importing the function from api
 
 const Dashboard = () => {
   const [email, setEmail] = useState("");
-  const [privateKey, setPrivateKey] = useState("");
+  const [private_key, setPrivateKey] = useState("");
   const [role, setRole] = useState("other");
   const [password, setPassword] = useState("");
 
@@ -24,14 +24,14 @@ const Dashboard = () => {
     const userData = {
       email,
       password: generatedPassword,
-      privateKey,
+      private_key,
       role,
     };
 
     // Call the createUser API function from api.js to send the data to backend
     try {
       const response = await createUser(userData);
-      if (response.success) {
+      if (response.status === "success") {
         alert("User created successfully!");
         setEmail("");
         setPrivateKey("");
@@ -63,7 +63,7 @@ const Dashboard = () => {
           <label>Private Key:</label>
           <input
             type="text"
-            value={privateKey}
+            value={private_key}
             onChange={(e) => setPrivateKey(e.target.value)}
             placeholder="Enter private key"
             required
