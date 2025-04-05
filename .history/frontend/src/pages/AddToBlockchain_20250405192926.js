@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { product, addtoblockchain } from "../services/api";
 import Web3 from "web3";
-import ProductVerification from "../ProductVerification.json";
+import ProductVerification from '../ProductVerification.json';
 
 const AddToBlockchain = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [contract, setContract] = useState(null);
+    const [contract, setContract] = useState(null);
   const [accounts, setAccounts] = useState([]);
   const [productData, setProductData] = useState(null);
   const [location, setLocation] = useState(null);
   const [timestamp, setTimestamp] = useState(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [web3, setWeb3] = useState(null);
   // const [button, setButton] = useState(false);
 
@@ -22,6 +22,8 @@ const AddToBlockchain = () => {
       const found = products.find((p) => p.product_id === id);
       setProductData(found);
     };
+
+      
 
     const getLocation = () => {
       navigator.geolocation.getCurrentPosition(
@@ -40,22 +42,19 @@ const AddToBlockchain = () => {
     getLocation();
   }, [id]);
 
-  const handleAdd = async () => {
+
+    const handleAdd = async () => {
     try {
       console.log("Adding product to blockchain...");
-      const prodId = productData.product_id;
-      const nfcHash = Math.floor(
-        1000000000000000 + Math.random() * 9000000000000000
-      ).toString();
+      const prodId= productData.product_id;
+      const nfcHash = Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString();
       console.log("after hask");
-      await contract.methods
-        .addProduct(prodId, JSON.stringify(location), nfcHash)
-        .send({ from: accounts[0] });
-      setMessage("Product added to blockchain!");
+      await contract.methods.addProduct(prodId, JSON.stringify(location), nfcHash).send({ from: accounts[0] });
+      setMessage('Product added to blockchain!');
       // setButton(true);
       console.log("Product added to blockchain:", prodId, location, nfcHash);
     } catch (err) {
-      setMessage("Error adding product.");
+      setMessage('Error adding product.');
     }
   };
   const handleSubmit = async () => {
@@ -65,46 +64,48 @@ const AddToBlockchain = () => {
       location,
       timestamp,
     });
-
+  
     if (res.success) {
       alert("Product added to blockchain!");
-
+  
       // Update product status in the backend after blockchain submission
       await productUpdate(productData.product_id);
-
+  
       navigate("/products");
     } else {
       alert("Blockchain submission failed");
     }
   };
+  
 
+  
   useEffect(() => {
     const init = async () => {
       if (window.ethereum) {
         try {
           // 🔑 This triggers MetaMask connect popup
-          await window.ethereum.request({ method: "eth_requestAccounts" });
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
           console.log("MetaMask connected");
           const web3 = new Web3(window.ethereum);
           const accounts = await web3.eth.getAccounts();
-
+          
           console.log("Connected account:", accounts[0]);
-
+  
           const networkId = Number(await web3.eth.net.getId());
           console.log("Current network ID:", networkId);
-
+  
           const deployedNetwork = ProductVerification.networks[networkId];
           console.log("Deployed network:", deployedNetwork);
           if (!deployedNetwork) {
             console.error("Contract not deployed to this network.");
             return;
           }
-
+  
           const instance = new web3.eth.Contract(
             ProductVerification.abi,
             deployedNetwork.address
           );
-
+  
           setContract(instance);
           setAccounts(accounts);
         } catch (error) {
@@ -114,7 +115,7 @@ const AddToBlockchain = () => {
         alert("Please install MetaMask!");
       }
     };
-
+  
     init();
   }, []);
 
@@ -135,20 +136,25 @@ const AddToBlockchain = () => {
       <p>
         <strong>Timestamp:</strong> {timestamp}
       </p>
-      {productData.Blockchain === false ? (
+      {productData.Blockchain===false ? (
         <>
-          <button onClick={handleAdd}>Submit to Blockchain</button>
-        </>
-      ) : (
-        <>
-          <p>{message}</p>
-        </>
-      )}
+      <button onClick={handleAdd} >Submit to Blockchain</button>
+      
+      </>
+    ) : (
+      <>
+        <p>{message}</p>
+        
+      </>
+    )}
+
     </div>
   );
 };
 
 export default AddToBlockchain;
+
+
 
 // import React, { useState, useEffect } from 'react';
 // import Web3 from 'web3';
@@ -169,26 +175,26 @@ export default AddToBlockchain;
 //         try {
 //           // 🔑 This triggers MetaMask connect popup
 //           await window.ethereum.request({ method: 'eth_requestAccounts' });
-
+  
 //           const web3 = new Web3(window.ethereum);
 //           const accounts = await web3.eth.getAccounts();
-
+          
 //           console.log("Connected account:", accounts[0]);
-
+  
 //           const networkId = await web3.eth.net.getId();
 //           console.log("Current network ID:", networkId);
-
+  
 //           const deployedNetwork = ProductVerification.networks[networkId];
 //           if (!deployedNetwork) {
 //             console.error("Contract not deployed to this network.");
 //             return;
 //           }
-
+  
 //           const instance = new web3.eth.Contract(
 //             ProductVerification.abi,
 //             deployedNetwork.address
 //           );
-
+  
 //           setContract(instance);
 //           setAccounts(accounts);
 //         } catch (error) {
@@ -198,9 +204,10 @@ export default AddToBlockchain;
 //         alert("Please install MetaMask!");
 //       }
 //     };
-
+  
 //     init();
 //   }, []);
+  
 
 //   const handleAdd = async () => {
 //     try {
