@@ -1,37 +1,75 @@
-/* Navbar.css (or add this to your existing CSS file) */
 .navbar {
-  width: 100%;
+  background-color: #000;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  background-color: #000000;
-  color: white;
+  padding: 15px 40px;
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 10;
+  width: 100%;
+  z-index: 1000;
 }
 
-.navbar-left h1 {
-  font-size: 24px;
-  font-weight: bold;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo h1 {
+  font-size: 20px;
   margin: 0;
 }
 
-.navbar-right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-.navbar-right svg {
+.logo-icon {
   font-size: 24px;
-  color: white;
-  transition: all 0.3s ease;
+  color: #8ddc39;
 }
 
-.navbar-right svg:hover {
-  color: #ffa500; /* Change color on hover */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+}
+
+.nav-links li.active,
+.nav-links li:hover {
+  color: #8ddc39;
+  font-weight: 500;
+}
+
+.signin-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  background: white;
+  color: #000;
+}
+
+
+.hero-image img {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
 }

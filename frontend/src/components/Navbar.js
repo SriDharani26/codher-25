@@ -1,17 +1,24 @@
-// src/components/Navbar.js
 import React from "react";
-import { FaUserPlus } from "react-icons/fa";
 import "../styles/Navbar.css";
+import Logo from "../assets/images/Logo.png";
 
 function Navbar() {
   return (
     <div className="navbar">
-      <div className="navbar-left">
+      <div className="logo">
+        <img src={Logo} alt="Secure delivery illustration" />
         <h1>PharmaChain</h1>
       </div>
-      <div className="navbar-right">
-        <FaUserPlus size={24} />
-      </div>
+
+      <ul className="nav-links">
+        <li className="active">Hero</li>
+        <li>Footer</li>
+        <li>CTA</li>
+        <li>Faq</li>
+        <li>Contact</li>
+      </ul>
+
+      <button className="signin-btn">Sign in</button>
     </div>
   );
 }
