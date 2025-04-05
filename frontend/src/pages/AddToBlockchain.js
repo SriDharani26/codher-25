@@ -14,7 +14,7 @@ const AddToBlockchain = () => {
   const [timestamp, setTimestamp] = useState(null);
   const [message, setMessage] = useState('');
   const [web3, setWeb3] = useState(null);
-  const [button, setButton] = useState(false);
+  // const [button, setButton] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -51,7 +51,7 @@ const AddToBlockchain = () => {
       console.log("after hask");
       await contract.methods.addProduct(prodId, JSON.stringify(location), nfcHash).send({ from: accounts[0] });
       setMessage('Product added to blockchain!');
-      setButton(true);
+      // setButton(true);
       console.log("Product added to blockchain:", prodId, location, nfcHash);
     } catch (err) {
       setMessage('Error adding product.');
@@ -72,6 +72,8 @@ const AddToBlockchain = () => {
       alert("Blockchain submission failed");
     }
   };
+
+  
   useEffect(() => {
     const init = async () => {
       if (window.ethereum) {
@@ -129,14 +131,14 @@ const AddToBlockchain = () => {
       <p>
         <strong>Timestamp:</strong> {timestamp}
       </p>
-      {button ? (
+      {productData.Blockchain===false ? (
         <>
-      {/* <button onClick={handleAdd} disabled={true}>Submit to Blockchain</button> */}
-      <p>{message}</p>
+      <button onClick={handleAdd} >Submit to Blockchain</button>
+      
       </>
     ) : (
       <>
-        <button onClick={handleAdd}>Submit to Blockchain</button>
+        <p>{message}</p>
         
       </>
     )}

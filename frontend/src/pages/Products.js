@@ -34,7 +34,7 @@ const Products = () => {
                     <td>{prod.product_name}</td>
                     <td>
                     <button onClick={() => navigate(`/addtoblockchain/${prod.product_id}`)}>
-                        Add to Blockchain
+                        View product
                     </button>
                     </td>
                 </tr>
