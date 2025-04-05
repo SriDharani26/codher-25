@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
-import React, { useState, useEffect } from 'react';
-import Web3 from 'web3';
-import ProductVerification from '../ProductVerification.json';
-=======
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import ProductVerification from "../ProductVerification.json";
->>>>>>> Stashed changes
 import QRCode from "react-qr-code";
 
 const TransferOwnership = () => {
