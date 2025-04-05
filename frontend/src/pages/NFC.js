@@ -58,14 +58,13 @@ const TransferOwnership = () => {
 
   const handleTransfer = async () => {
     try {
-        const newHash = await web3.utils.sha3(newOwner + location + prodId);
+        const newHash =  Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString();
         console.log("New Hash:", newHash);
         const newOwner = accounts;
         console.log("New Owner:", newOwner);
       await contract.methods
         .transferOwnership(prodId, JSON.stringify(location), newHash, oldHash, newOwner)
         .send({ from: accounts[0] });
-
       setStatus('✅ Ownership transferred');
     } catch (err) {
       setStatus('❌ Transfer failed');
@@ -98,7 +97,7 @@ const TransferOwnership = () => {
           <div style={{ marginTop: 10 }}>
             <p><strong>Prod ID:</strong> {productInfo[0]}</p>
             <p><strong>Location:</strong> {productInfo[1]}</p>
-            <p><strong>Timestamp:</strong> {new Date(productInfo[2] * 1000).toLocaleString()}</p>
+            <p><strong>Timestamp:</strong> {productInfo[2]}</p>
             <p><strong>NFC Hash:</strong> {productInfo[3]}</p>
             <p><strong>Owner:</strong> {productInfo[4]}</p>
           </div>
