@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import ProductVerification from '../ProductVerification.json';
+import QRCode from "qrcode.react";
 
 const TransferOwnership = () => {
   const [contract, setContract] = useState(null);
@@ -76,6 +77,16 @@ const TransferOwnership = () => {
     setProductInfo(data);
   };
 
+  const productJSON = productInfo
+  ? JSON.stringify({
+      prodId: productInfo[0],
+      location: productInfo[1],
+      timestamp: productInfo[2].toString(), // ensure it's string
+      nfcHash: productInfo[3],
+      owner: productInfo[4],
+    })
+  : null;
+
   return (
     <>
     <div>
@@ -103,6 +114,13 @@ const TransferOwnership = () => {
           </div>
         )}
       </div>
+      <div style={{ marginTop: 20 }}>
+            <h4>QR Code for NFC Storage</h4>
+            <QRCode value={productJSON} size={256} />
+            <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
+              {productJSON}
+            </pre>
+          </div>
       </>
   );
 };
