@@ -49,7 +49,7 @@ const AddToBlockchain = () => {
       const prodId= productData.product_id;
       const nfcHash = Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString();
       console.log("after hask");
-      await contract.methods.addProduct(prodId, location, nfcHash).send({ from: accounts[0] });
+      await contract.methods.addProduct(prodId, JSON.stringify(location), nfcHash).send({ from: accounts[0] });
       setMessage('✅ Product added to blockchain!');
       setButton(true);
       console.log("Product added to blockchain:", prodId, location, nfcHash);
