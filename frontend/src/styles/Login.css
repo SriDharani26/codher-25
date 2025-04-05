@@ -1,4 +1,9 @@
-.login-container {
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .login-container {
     position: relative;
     min-height: 100vh;
     background-color: #0d0d0d;
@@ -13,41 +18,64 @@
     position: relative;
     background: #1a1a1a;
     padding: 40px;
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     z-index: 2;
     text-align: center;
-    width: 320px;
-    margin-bottom: 80px; /* Push it up above the wave */
+    width: 350px;
+    margin-bottom: 80px;
+    color: #ffffff;
+  }
+  
+  .login-card h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 20px;
   }
   
   .login-card input {
     width: 100%;
-    margin: 10px 0;
-    padding: 12px;
+    margin: 12px 0;
+    padding: 14px;
     border-radius: 25px;
     border: none;
     outline: none;
     font-size: 16px;
+    background-color: #2a2a2a;
+    color: #fff;
+  }
+  
+  .login-card input::placeholder {
+    color: #aaa;
   }
   
   .login-card button {
     background: #8ddc39;
-    color: black;
-    padding: 12px 30px;
+    color: #0d0d0d;
+    padding: 14px 30px;
     border-radius: 25px;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
     border: none;
-    margin-top: 10px;
+    transition: background 0.3s ease;
+  }
+  
+  .login-card button:hover {
+    background: #a0e348;
   }
   
   .forgot-link {
     display: block;
-    margin-top: 10px;
+    margin-top: 14px;
     font-size: 14px;
-    color: #ccc;
+    color: #aaa;
     text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-link:hover {
+    color: #8ddc39;
   }
   
   .wave-container {
