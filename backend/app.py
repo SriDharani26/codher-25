@@ -137,9 +137,9 @@ def get_whitelist_by_product(product_id):
 @app.route('/addedtoblockchain/<product_id>', methods=['POST'])
 def add_to_blockchain(product_id):
    
-    result = db.whitelist.update_one(
+    result = db.products.update_one(
         {"product_id": product_id},
-        {"$set": {"blockchain": True}}
+        {"$set": {"Blockchain": True}}
     )
 
     if result.matched_count == 0:

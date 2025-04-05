@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { product, addtoblockchain } from "../services/api";
+import { product,productUpdate } from "../services/api";
 import Web3 from "web3";
 import ProductVerification from "../ProductVerification.json";
 
@@ -48,35 +48,19 @@ const AddToBlockchain = () => {
         1000000000000000 + Math.random() * 9000000000000000
       ).toString();
       console.log("after hask");
+      await productUpdate(productData.product_id);
+      setMessage("Product added to blockchain!");
       await contract.methods
         .addProduct(prodId, JSON.stringify(location), nfcHash)
         .send({ from: accounts[0] });
-      setMessage("Product added to blockchain!");
-      // setButton(true);
+      
+      
       console.log("Product added to blockchain:", prodId, location, nfcHash);
     } catch (err) {
       setMessage("Error adding product.");
     }
   };
-  const handleSubmit = async () => {
-    const res = await addtoblockchain({
-      product_id: productData.product_id,
-      product_name: productData.product_name,
-      location,
-      timestamp,
-    });
-
-    if (res.success) {
-      alert("Product added to blockchain!");
-
-      // Update product status in the backend after blockchain submission
-      await productUpdate(productData.product_id);
-
-      navigate("/products");
-    } else {
-      alert("Blockchain submission failed");
-    }
-  };
+  
 
   useEffect(() => {
     const init = async () => {
