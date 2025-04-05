@@ -7,14 +7,18 @@
   padding: 15px 40px;
   position: fixed;
   top: 0;
+  top: 0;
+  left: 0;        /* Add this */
+  right: 0; 
   width: 100%;
   z-index: 1000;
+  margin-left: 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
 }
 
 .logo h1 {
@@ -30,7 +34,7 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 25px;
+  gap: 50px;
   margin: 0;
   padding: 0;
 }
@@ -54,6 +58,7 @@
   padding: 6px 16px;
   border-radius: 6px;
   font-size: 14px;
+  margin-right: 60px;
   transition: 0.3s;
 }
 

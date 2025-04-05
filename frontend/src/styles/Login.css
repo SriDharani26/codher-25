@@ -1,0 +1,66 @@
+.login-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .login-card {
+    position: relative;
+    background: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    text-align: center;
+    width: 320px;
+    margin-bottom: 80px; /* Push it up above the wave */
+  }
+  
+  .login-card input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .login-card button {
+    background: #8ddc39;
+    color: black;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin-top: 10px;
+  }
+  
+  .forgot-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .wave-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  

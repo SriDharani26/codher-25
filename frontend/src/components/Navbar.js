@@ -1,8 +1,15 @@
 import React from "react";
 import "../styles/Navbar.css";
 import Logo from "../assets/images/Logo.png";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    navigate("/login"); // Adjust the route as per your app
+  };
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -18,7 +25,7 @@ function Navbar() {
         <li>Contact</li>
       </ul>
 
-      <button className="signin-btn">Sign in</button>
+      <button className="signin-btn"  onClick={handleSignIn}>Sign in</button>
     </div>
   );
 }

@@ -66,7 +66,8 @@ function LandingPage() {
 </div>
 
         {/* Section 3: Call to Action */}
-<div className="section section-3" style={{ 
+<div className="section section-3" style                                                
+={{ 
   backgroundColor: "#1d1d1d", 
   color: "#fff", 
   textAlign: "center", 
