@@ -16,7 +16,7 @@ if not mongo_connection_string:
     raise ValueError("No MongoDB connection string found in environment variables")
 
 client = MongoClient(mongo_connection_string)
-db = client['Cohder']
+db = client['Codher']
 
 print("Connected to MongoDB")
 
@@ -27,13 +27,13 @@ def home():
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    username = data.get('username')
+    email = data.get('email')
     password = data.get('password')
 
-    if not username or not password:
+    if not email or not password:
         return jsonify({"error": "Username and password are required"}), 400
 
-    user = db.users.find_one({"username": username, "password": password})
+    user = db.users.find_one({"email": email, "password": password})
 
     if user:
         return jsonify({
