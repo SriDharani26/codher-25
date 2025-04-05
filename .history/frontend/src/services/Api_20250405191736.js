@@ -53,7 +53,7 @@ export const getUsers = async () => {
   return await res.json();
 };
 
-//Sending product_id to backend for updated blockchain status 
+//
 export const productUpdate = async (productId) => {
   const res = await fetch(`${BASE_URL}/addedtoblockchain/${productId}`);
   return await res.json();
