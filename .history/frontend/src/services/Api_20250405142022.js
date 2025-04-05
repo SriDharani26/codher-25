@@ -10,6 +10,7 @@ export const loginUser = async (email, password) => {
   return await res.json();
 };
 
+
 // Fetch all products
 export const product = async () => {
   const res = await fetch(`${BASE_URL}/products`);
