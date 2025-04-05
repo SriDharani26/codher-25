@@ -52,6 +52,3 @@ export const whitelistProducts = async () => {
     const res = await fetch(`${BASE_URL}/users`);
     return await res.json();
   };
-
-
-  

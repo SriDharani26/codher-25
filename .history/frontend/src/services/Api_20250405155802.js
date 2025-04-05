@@ -36,8 +36,9 @@ export const addtoblockchain = async (data) => {
   return await res.json();
 };
 
+//Adding 
 export const whitelistProducts = async () => {
-    const res = await fetch(`${BASE_URL}/whitelist`);
+    const res = await fetch(`${BASE_URL}/whitelist/products`);
     return await res.json();
   };
   
@@ -52,6 +53,3 @@ export const whitelistProducts = async () => {
     const res = await fetch(`${BASE_URL}/users`);
     return await res.json();
   };
-
-
-  

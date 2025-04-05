@@ -82,7 +82,7 @@ const Whitelist = () => {
                   <strong>NFC:</strong> {status.nfc ? "Updated" : "Not Updated"}
                 </p>
                 <p>
-                  <strong>Sent:</strong> {status.sent ? "Sent" : "Not Sent"}
+                  <strong>Sent:</strong> {status.sent ? "✅" : "❌"}
                 </p>
               </div>
             ))}

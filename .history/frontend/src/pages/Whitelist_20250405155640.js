@@ -79,10 +79,10 @@ const Whitelist = () => {
               >
                 <h4>User: {users[userId] || userId}</h4>
                 <p>
-                  <strong>NFC:</strong> {status.nfc ? "Updated" : "Not Updated"}
+                  <strong>NFC:</strong> {status.nfc ? "✅" : "❌"}
                 </p>
                 <p>
-                  <strong>Sent:</strong> {status.sent ? "Sent" : "Not Sent"}
+                  <strong>Sent:</strong> {status.sent ? "✅" : "❌"}
                 </p>
               </div>
             ))}
