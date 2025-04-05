@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createUser, product, addRoute } from "../services/api"; // Importing the function from api.js
+import { createUser, getProducts, addRoute } from "../services/api"; // Importing the function from api.js
 
 const Dashboard = () => {
   // Create User States
@@ -7,7 +7,6 @@ const Dashboard = () => {
   const [private_key, setPrivateKey] = useState("");
   const [role, setRole] = useState("other");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
 
   // Add Route States
   const [routeLocations, setRouteLocations] = useState(0);
@@ -23,7 +22,7 @@ const Dashboard = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     const generatedPassword = generatePassword();
-    setPassword(generatedPassword);
+    setPassword(generatedPassword); 
 
     const userData = {
       email,
@@ -49,7 +48,7 @@ const Dashboard = () => {
 
   // Fetch Products
   useEffect(() => {
-    product()
+    getProducts()
       .then((response) => {
         setProducts(response);
       })
@@ -66,7 +65,7 @@ const Dashboard = () => {
     selectedUsers.forEach((userId, index) => {
       route[userId] = {
         nfc: false,
-        sent: false,
+        sent: false, 
       };
     });
 
@@ -88,6 +87,7 @@ const Dashboard = () => {
     <div>
       <h1>Admin Dashboard</h1>
 
+      {/* Create User Form */}
       <h2>Create New User</h2>
       <form onSubmit={handleCreateUser}>
         <div>
@@ -128,6 +128,7 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Add Route Form */}
       <h2>Add Route to Products</h2>
       <div>
         <label>Number of Locations:</label>
@@ -140,6 +141,7 @@ const Dashboard = () => {
         />
       </div>
 
+      
       {routeLocations > 0 && (
         <div>
           <h3>Select Users for Route</h3>
@@ -156,7 +158,7 @@ const Dashboard = () => {
                 <option value="">Select User</option>
                 {users.map((user) => (
                   <option key={user.userId} value={user.userId}>
-                    {user.email} (ID: {user.userId})
+                    {user.email}
                   </option>
                 ))}
               </select>
@@ -165,6 +167,7 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Display Products and Add Route Button */}
       <div>
         <h3>Products</h3>
         <ul>

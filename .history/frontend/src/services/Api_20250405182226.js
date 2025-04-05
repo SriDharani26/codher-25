@@ -47,7 +47,7 @@ export const getWhitelistByProductId = async (productId) => {
   return await res.json();
 };
 
-// Get all users    
+// Get all products in the whitelist
 export const getUsers = async () => {
   const res = await fetch(`${BASE_URL}/users`);
   return await res.json();

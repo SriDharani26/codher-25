@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { createUser, product, addRoute } from "../services/api"; // Importing the function from api.js
+import { createUser, getProducts, addRoute } from "../services/api"; // Importing the function from api.js
 
 const Dashboard = () => {
   // Create User States
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
   // Fetch Products
   useEffect(() => {
-    product()
+    getProducts()
       .then((response) => {
         setProducts(response);
       })
