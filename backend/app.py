@@ -37,7 +37,7 @@ def login():
 
     if user:
         return jsonify({
-            "message": "Login successful",
+            "status": "success",
             "role": user.get("role", "unknown")
         }), 200
     else:

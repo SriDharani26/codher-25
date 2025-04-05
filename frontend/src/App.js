@@ -51,7 +51,7 @@ function App() {
           <Route
             path="/nfc"
             element={
-              <PrivateRoute allowedRoles={["admin", "manufacturer", "user"]}>
+              <PrivateRoute allowedRoles={["admin", "manufacturer", "other"]}>
                 <NFC />
               </PrivateRoute>
             }
