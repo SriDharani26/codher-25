@@ -128,7 +128,7 @@ const Dashboard = () => {
         </div>
       )}
 
-      
+      {/* Add Route Form */}
       <h2>Add Route to Products</h2>
       <div>
         <label>Number of Locations:</label>
@@ -167,6 +167,7 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Display Products and Add Route Button */}
       <div>
         <h3>Products</h3>
         <ul>

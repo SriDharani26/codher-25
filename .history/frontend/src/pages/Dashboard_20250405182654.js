@@ -22,7 +22,7 @@ const Dashboard = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     const generatedPassword = generatePassword();
-    setPassword(generatedPassword); 
+    setPassword(generatedPassword); // Update state to show the generated password
 
     const userData = {
       email,
@@ -46,7 +46,7 @@ const Dashboard = () => {
     }
   };
 
-  // Fetch Products
+  // Fetch Products (on component mount)
   useEffect(() => {
     getProducts()
       .then((response) => {
@@ -64,8 +64,8 @@ const Dashboard = () => {
     // Create route data based on selected users
     selectedUsers.forEach((userId, index) => {
       route[userId] = {
-        nfc: false,
-        sent: false, 
+        nfc: false, // Initially false
+        sent: false, // Initially false
       };
     });
 
@@ -87,7 +87,7 @@ const Dashboard = () => {
     <div>
       <h1>Admin Dashboard</h1>
 
-     
+      {/* Create User Form */}
       <h2>Create New User</h2>
       <form onSubmit={handleCreateUser}>
         <div>
@@ -128,7 +128,7 @@ const Dashboard = () => {
         </div>
       )}
 
-      
+      {/* Add Route Form */}
       <h2>Add Route to Products</h2>
       <div>
         <label>Number of Locations:</label>
@@ -141,7 +141,7 @@ const Dashboard = () => {
         />
       </div>
 
-      
+      {/* Display dropdowns for selecting users based on the number of locations */}
       {routeLocations > 0 && (
         <div>
           <h3>Select Users for Route</h3>
@@ -167,6 +167,7 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Display Products and Add Route Button */}
       <div>
         <h3>Products</h3>
         <ul>

@@ -67,22 +67,5 @@ export const createUser = async (userData) => {
     throw new Error("Error creating user");
   }
 
-  return await res.json(); // Assuming the backend returns a JSON response
-};
-
-//Add route to product
-export const addRoute = async (routeData) => {
-  const res = await fetch(`${BASE_URL}/addroute`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(routeData),
-  });
-
-  if (!res.ok) {
-    throw new Error("Error adding route");
-  }
-
   return await res.json();
 };

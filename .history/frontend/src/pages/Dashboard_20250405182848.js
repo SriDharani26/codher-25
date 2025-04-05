@@ -167,6 +167,7 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Display Products and Add Route Button */}
       <div>
         <h3>Products</h3>
         <ul>
