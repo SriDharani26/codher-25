@@ -37,35 +37,39 @@ export const addtoblockchain = async (data) => {
 };
 
 export const whitelistProducts = async () => {
-  const res = await fetch(`${BASE_URL}/whitelist`);
-  return await res.json();
-};
+    const res = await fetch(`${BASE_URL}/whitelist`);
+    return await res.json();
+  };
+  
+  // Get route info for a specific product
+  export const getWhitelistByProductId = async (productId) => {
+    const res = await fetch(`${BASE_URL}/whitelist/${productId}`);
+    return await res.json();
+  };
+  
+  // Get all users
+  export const getUsers = async () => {
+    const res = await fetch(`${BASE_URL}/users`);
+    return await res.json();
+  };
 
-// Get route info for a specific product
-export const getWhitelistByProductId = async (productId) => {
-  const res = await fetch(`${BASE_URL}/whitelist/${productId}`);
-  return await res.json();
-};
-
-// Get all products in the whitelist
-export const getUsers = async () => {
-  const res = await fetch(`${BASE_URL}/users`);
-  return await res.json();
-};
-
-// Create a new user
+//creating a new user
+// Create a new user (admin functionality)
 export const createUser = async (userData) => {
-  const res = await fetch(`${BASE_URL}/createuser`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  });
-
-  if (!res.ok) {
-    throw new Error("Error creating user");
-  }
-
-  return await res.json(); // Assuming the backend returns a JSON response
-};
+    const res = await fetch(`${BASE_URL}/adduser`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+    return await res.json();
+  };
+  
+  // Add route to product (admin functionality)
+  export const addRouteToProduct = async (productId, routeData) => {
+    const res = await fetch(`${BASE_URL}/product/${productId}/addRoute`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(routeData),
+    });
+    return await res.json();
+  };

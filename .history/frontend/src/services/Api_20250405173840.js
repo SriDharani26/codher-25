@@ -47,25 +47,28 @@ export const getWhitelistByProductId = async (productId) => {
   return await res.json();
 };
 
-// Get all products in the whitelist
+// Get all users
 export const getUsers = async () => {
   const res = await fetch(`${BASE_URL}/users`);
   return await res.json();
 };
 
-// Create a new user
+//creating a new user
 export const createUser = async (userData) => {
-  const res = await fetch(`${BASE_URL}/createuser`, {
+  const res = await fetch(`${BASE_URL}/adduser`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userData),
   });
+  return await res.json();
+};
 
-  if (!res.ok) {
-    throw new Error("Error creating user");
-  }
-
-  return await res.json(); // Assuming the backend returns a JSON response
+// Add route to product (admin functionality)
+export const addRouteToProduct = async (productId, routeData) => {
+  const res = await fetch(`${BASE_URL}/product/${productId}/addRoute`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(routeData),
+  });
+  return await res.json();
 };

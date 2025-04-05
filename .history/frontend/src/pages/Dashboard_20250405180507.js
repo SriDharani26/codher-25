@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createUser } from "../services/api"; // Importing the function from api.js
+import { createUser } from ".services/api"; // Importing the function from api.js
 
 const Dashboard = () => {
   const [email, setEmail] = useState("");

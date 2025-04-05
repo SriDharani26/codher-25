@@ -37,35 +37,20 @@ export const addtoblockchain = async (data) => {
 };
 
 export const whitelistProducts = async () => {
-  const res = await fetch(`${BASE_URL}/whitelist`);
-  return await res.json();
-};
+    const res = await fetch(`${BASE_URL}/whitelist`);
+    return await res.json();
+  };
+  
+  // Get route info for a specific product
+  export const getWhitelistByProductId = async (productId) => {
+    const res = await fetch(`${BASE_URL}/whitelist/${productId}`);
+    return await res.json();
+  };
+  
+  // Get all users
+  export const getUsers = async () => {
+    const res = await fetch(`${BASE_URL}/users`);
+    return await res.json();
+  };
 
-// Get route info for a specific product
-export const getWhitelistByProductId = async (productId) => {
-  const res = await fetch(`${BASE_URL}/whitelist/${productId}`);
-  return await res.json();
-};
-
-// Get all products in the whitelist
-export const getUsers = async () => {
-  const res = await fetch(`${BASE_URL}/users`);
-  return await res.json();
-};
-
-// Create a new user
-export const createUser = async (userData) => {
-  const res = await fetch(`${BASE_URL}/createuser`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  });
-
-  if (!res.ok) {
-    throw new Error("Error creating user");
-  }
-
-  return await res.json(); // Assuming the backend returns a JSON response
-};
+//creating a new user
