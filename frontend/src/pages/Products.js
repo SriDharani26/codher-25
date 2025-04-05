@@ -49,7 +49,7 @@ const Products = () => {
       </table>
 
       <br />
-      <button onClick={() => navigate("/addproduct")}>View Product Details</button>
+      <button onClick={() => navigate("/addproduct")}>Add new Product</button>
     </div>
   );
 };

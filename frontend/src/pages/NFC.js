@@ -61,8 +61,12 @@ const TransferOwnership = () => {
     try {
         const newHash =  Math.floor(1000000000000000 + Math.random() * 9000000000000000).toString();
         console.log("New Hash:", newHash);
-        const newOwner = accounts;
+        const newOwner = accounts[0];
         console.log("New Owner:", newOwner);
+        console.log("Old Hash:", oldHash);
+        console.log("Location:", location);
+        console.log("Product ID:", prodId);
+        console.log("Timestamp:", timestamp);
       await contract.methods
         .transferOwnership(prodId, JSON.stringify(location), newHash, oldHash, newOwner)
         .send({ from: accounts[0] });
@@ -74,18 +78,26 @@ const TransferOwnership = () => {
 
   const handleVerify = async () => {
     const data = await contract.methods.getProduct(prodId).call();
+    // console.log();
+    console.log("Product data:", data);
     setProductInfo(data);
   };
 
-  const productJSON = productInfo && productInfo.length >= 5
-  ? JSON.stringify({
-      prodId: productInfo[0],
-      location: productInfo[1],
-      timestamp: productInfo[2]?.toString?.() ?? "", // ensure it's string, not BigInt
-      nfcHash: productInfo[3],
-      owner: productInfo[4],
-    })
-  : "";
+  // const productJSON = productInfo && productInfo.length >= 5
+  // ? JSON.stringify({
+  //     prodId: productInfo[0],
+  //     location: productInfo[1],
+  //     timestamp: new Date(Number(productInfo[2]) * 1000).toLocaleString(),
+  //     nfcHash: productInfo[3],
+  //     owner: productInfo[4],
+  //   })
+  // : "";
+
+  const productQRString =
+  productInfo && prodId
+    ? `PID: ${productInfo[0]}, Location: ${productInfo[1]}, Time: ${new Date(Number(productInfo[2]) * 1000).toLocaleString()}, NFC: ${productInfo[3]}, Owner: ${productInfo[4]}`
+    : "";
+
 
 
   return (
@@ -106,22 +118,30 @@ const TransferOwnership = () => {
         <button onClick={handleVerify}>Check</button>
   
         {productInfo && (
-          <div style={{ marginTop: 10 }}>
-            <p><strong>Prod ID:</strong> {productInfo[0]}</p>
-            <p><strong>Location:</strong> {productInfo[1]}</p>
-            <p><strong>Timestamp:</strong> {productInfo[2]}</p>
-            <p><strong>NFC Hash:</strong> {productInfo[3]}</p>
-            <p><strong>Owner:</strong> {productInfo[4]}</p>
-          </div>
-        )}
-              <div style={{ marginTop: 20 }}>
-            <h4>QR Code for NFC Storage</h4>
-            <QRCode value={productJSON} size={256} />
-            <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
-              {productJSON}
-            </pre>
-          </div>
-      </div>
+  <div style={{ marginTop: 10 }}>
+    <p><strong>Prod ID:</strong> {productInfo[0]}</p>
+    <p><strong>Location:</strong> {productInfo[1]}</p>
+    <p><strong>Timestamp:</strong> {new Date(Number(productInfo[2]) * 1000).toLocaleString()}</p>
+    <p><strong>NFC Hash:</strong> {productInfo[3]}</p>
+    <p><strong>Owner:</strong> {productInfo[4]}</p>
+  </div>
+)}
+
+{productInfo && prodId && (
+  <div style={{ marginTop: 20 }}>
+    <h4>QR Code for NFC Storage</h4>
+    {/* <QRCode value={productJSON} size={256} />
+    <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
+      {productJSON}
+    </pre> */}
+<QRCode value={productQRString} size={256} />
+<pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
+  {productQRString}
+</pre>
+
+  </div>
+)}
+        </div>
 
       </>
   );
