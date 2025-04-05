@@ -57,7 +57,8 @@ def add_product():
 
     product = {
         "product_id": product_id,
-        "product_name": product_name
+        "product_name": product_name,
+        "Blockchain":False,
     }
 
     db.products.insert_one(product)
@@ -133,6 +134,20 @@ def get_whitelist_by_product(product_id):
 
     return jsonify(whitelist_entry), 200
 
+@app.route('/addedtoblockchain/<product_id>', methods=['POST'])
+def add_to_blockchain(product_id):
+    # Find and update the product's blockchain field
+    result = db.whitelist.update_one(
+        {"product_id": product_id},
+        {"$set": {"blockchain": True}}
+    )
+
+    if result.matched_count == 0:
+        return jsonify({"error": "Product not found"}), 404
+
+    return jsonify({"status": "Product marked as added to blockchain"}), 200
+
+    
 
 if __name__ == '__main__':
     app.config['DEBUG'] = False
