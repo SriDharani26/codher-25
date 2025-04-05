@@ -102,7 +102,7 @@ const TransferOwnership = () => {
     : "";
 
 
-=======
+
   const productJSON = productInfo
     ? JSON.stringify({
         prodId: productInfo[0],
@@ -112,7 +112,7 @@ const TransferOwnership = () => {
         owner: productInfo[4],
       })
     : null;
->>>>>>> Stashed changes
+
 
   return (
     <>
@@ -153,34 +153,25 @@ const TransferOwnership = () => {
   </div>
 )}
 
-{productInfo && prodId && (
-  <div style={{ marginTop: 20 }}>
-    <h4>QR Code for NFC Storage</h4>
-    {/* <QRCode value={productJSON} size={256} />
+    {productInfo && prodId && (
+      <div style={{ marginTop: 20 }}>
+        <h4>QR Code for NFC Storage</h4>
+        {/* <QRCode value={productJSON} size={256} />
+        <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
+          {productJSON}
+        </pre> */}
+    <QRCode value={productQRString} size={256} />
     <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
-      {productJSON}
-    </pre> */}
-<QRCode value={productQRString} size={256} />
-<pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
-  {productQRString}
-</pre>
+      {productQRString}
+    </pre>
 
-  </div>
-)}
+      </div>
+    )}
         </div>
 
       </>
-=======
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <h4>QR Code for NFC Storage</h4>
-        <QRCode value={productJSON} size={256} />
-        <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
-          {productJSON}
-        </pre>
-      </div>
-    </>
->>>>>>> Stashed changes
+
+
   );
 };
 
