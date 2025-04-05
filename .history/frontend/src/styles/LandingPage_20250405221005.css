@@ -1,0 +1,56 @@
+/* Hero Section Styling */
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 80px;
+  color: rgb(11, 10, 10);
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.hero-text .highlight {
+  color: #8bc34a;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #1a1818;
+}
+
+.get-started-btn {
+  background-color: #4caf50;
+  color: rgb(4, 4, 4);
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #4caf50a0;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background-color: #388e3c;
+}
+
+.hero-graphic {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-graphic img {
+  max-width: 100%;
+  height: auto;
+}

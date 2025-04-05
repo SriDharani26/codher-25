@@ -1,7 +1,7 @@
 // src/components/Navbar.js
 import React from "react";
-import { FaUserPlus } from "react-icons/fa";
-import "../styles/Navbar.css";
+import { FaUserPlus } from "react-icons/fa"; 
+import ''../styles/Navbar.css; // Import the sign-up icon from react-icons
 
 function Navbar() {
   return (

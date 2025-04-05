@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
-import React, { useState, useEffect } from 'react';
-import Web3 from 'web3';
-import ProductVerification from '../ProductVerification.json';
-=======
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import ProductVerification from "../ProductVerification.json";
->>>>>>> Stashed changes
 import QRCode from "react-qr-code";
 
 const TransferOwnership = () => {
@@ -88,18 +82,6 @@ const TransferOwnership = () => {
     setProductInfo(data);
   };
 
-<<<<<<< Updated upstream
-  const productJSON = productInfo && productInfo.length >= 5
-  ? JSON.stringify({
-      prodId: productInfo[0],
-      location: productInfo[1],
-      timestamp: productInfo[2]?.toString?.() ?? "", // ensure it's string, not BigInt
-      nfcHash: productInfo[3],
-      owner: productInfo[4],
-    })
-  : "";
-
-=======
   const productJSON = productInfo
     ? JSON.stringify({
         prodId: productInfo[0],
@@ -109,7 +91,6 @@ const TransferOwnership = () => {
         owner: productInfo[4],
       })
     : null;
->>>>>>> Stashed changes
 
   return (
     <>
@@ -159,18 +140,6 @@ const TransferOwnership = () => {
             </p>
           </div>
         )}
-<<<<<<< Updated upstream
-              <div style={{ marginTop: 20 }}>
-            <h4>QR Code for NFC Storage</h4>
-            <QRCode value={productJSON} size={256} />
-            <pre style={{ marginTop: 10, backgroundColor: "#f0f0f0", padding: 10 }}>
-              {productJSON}
-            </pre>
-          </div>
-      </div>
-
-      </>
-=======
       </div>
       <div style={{ marginTop: 20 }}>
         <h4>QR Code for NFC Storage</h4>
@@ -180,7 +149,6 @@ const TransferOwnership = () => {
         </pre>
       </div>
     </>
->>>>>>> Stashed changes
   );
 };
 

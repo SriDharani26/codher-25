@@ -1,0 +1,33 @@
+.landing-container {
+  text-align: center;
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.rectangles-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.rectangle {
+  width: 150px;
+  height: 100px;
+  background-color: #4caf50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.rectangle:hover {
+  background-color: #45a049;
+}

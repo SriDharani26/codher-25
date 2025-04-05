@@ -1,0 +1,141 @@
+/* src/styles/LandingPage.css */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.landing-page {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding-top: 60px; /* Adding space for the fixed navbar */
+}
+
+/* Header and Navbar styling */
+.header {
+  width: 100%;
+
+  background-color: #282c34;
+  color: white;
+}
+
+/* Navbar styling */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-right {
+  margin-right: 20px;
+}
+
+.navbar-right svg {
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.navbar-right svg:hover {
+  color: #ffa500; /* Change color on hover */
+}
+
+/* Sections styling: stack sections vertically without any space */
+.sections {
+  display: flex;
+  flex-direction: column; /* Stack the sections vertically */
+  padding: 0; /* Remove padding between sections */
+}
+
+/* Section styling without space between each */
+.section {
+  width: 100%; /* Full width of the container */
+  padding: 200px;
+  background-color: #f0f0f0;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box; /* Ensure padding and margin are considered for width */
+}
+
+/* Optional: Different background colors for each section */
+.section-1 {
+  background-color: #050505;
+}
+
+.section-2 {
+  background-color: #ffe0b2;
+}
+
+.section-3 {
+  background-color: #c8e6c9;
+}
+
+.section-4 {
+  background-color: #fff3e0;
+}
+
+/* Hero Section Styling */
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 100px 80px;
+  color: white;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 36px;
+  
+}
+
+.hero-text .highlight {
+  color: #8bc34a;
+}
+
+.hero-text p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #aaa;
+}
+
+.get-started-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #4caf50a0;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background-color: #388e3c;
+}
+
+.hero-graphic {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-graphic img {
+  max-width: 100%;
+  height: auto;
+}

@@ -1,0 +1,66 @@
+/* src/App.css or src/pages/LandingPage.css */
+.landing-page {
+  font-family: Arial, sans-serif;
+}
+
+/* Header and Navbar styling */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #282c34;
+  color: white;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-left h1 {
+  margin-left: 20px;
+  font-size: 24px;
+}
+
+.navbar-right {
+  margin-right: 20px;
+}
+
+.navbar-right svg {
+  cursor: pointer;
+}
+
+/* Sections styling */
+.sections {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.section {
+  width: 23%; /* Makes the four divs evenly spaced */
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.section-1 {
+  background-color: #e1f5fe;
+}
+
+.section-2 {
+  background-color: #ffe0b2;
+}
+
+.section-3 {
+  background-color: #c8e6c9;
+}
+
+.section-4 {
+  background-color: #fff3e0;
+}
