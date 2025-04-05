@@ -84,7 +84,7 @@ const AddToBlockchain = () => {
           
           console.log("Connected account:", accounts[0]);
   
-          const networkId = await web3.eth.net.getId();
+          const networkId = Number(await web3.eth.net.getId());
           console.log("Current network ID:", networkId);
   
           const deployedNetwork = ProductVerification.networks[networkId];

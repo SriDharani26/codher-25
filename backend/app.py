@@ -74,7 +74,27 @@ def get_product():
 
     return jsonify(products), 200
 
+@app.route('/whitelist', methods=['GET'])
+def get_whitelist_products():
+    products = list(db.whitelist.find({}, {'_id': 0, 'product_id': 1}))
 
+    if not products:
+        return jsonify({"error": "No products found"}), 404
+
+    return jsonify(products), 200
+
+
+@app.route('/whitelist/<product_id>', methods=['GET'])
+def get_whitelist_by_product(product_id):
+    whitelist_entry = db.whitelist.find_one(
+        {"product_id": product_id},
+        {"_id": 0, "product_id": 1, "route": 1}
+    )
+
+    if not whitelist_entry:
+        return jsonify({"error": "Product not found"}), 404
+
+    return jsonify(whitelist_entry), 200
 
 
 if __name__ == '__main__':
