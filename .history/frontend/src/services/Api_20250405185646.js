@@ -47,15 +47,9 @@ export const getWhitelistByProductId = async (productId) => {
   return await res.json();
 };
 
-// Get all users
+// Get all user
 export const getUsers = async () => {
   const res = await fetch(`${BASE_URL}/users`);
-  return await res.json();
-};
-
-
-export const productUpdate = async (productId) => {
-  const res = await fetch(`${BASE_URL}/addedtoblockchain/${productId}`);
   return await res.json();
 };
 

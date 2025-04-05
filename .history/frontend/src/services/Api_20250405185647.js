@@ -53,12 +53,6 @@ export const getUsers = async () => {
   return await res.json();
 };
 
-
-export const productUpdate = async (productId) => {
-  const res = await fetch(`${BASE_URL}/addedtoblockchain/${productId}`);
-  return await res.json();
-};
-
 // Create a new user
 export const createUser = async (userData) => {
   const res = await fetch(`${BASE_URL}/createuser`, {
