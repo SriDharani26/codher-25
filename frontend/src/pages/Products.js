@@ -14,6 +14,7 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  console.log("Products:", products);
   return (
     <div style={{ padding: "20px" }}>
       <h2>Product List</h2>
@@ -26,22 +27,25 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((prod) => (
-            <tr key={prod.product_id}>
-              <td>{prod.product_id}</td>
-              <td>{prod.product_name}</td>
-              <td>
-                <button
-                  onClick={() =>
-                    navigate(`/addtoblockchain/${prod.product_id}`)
-                  }
-                >
-                  Add to Blockchain
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+            {Array.isArray(products) && products.length > 0 ? (
+                products.map((prod) => (
+                <tr key={prod.product_id}>
+                    <td>{prod.product_id}</td>
+                    <td>{prod.product_name}</td>
+                    <td>
+                    <button onClick={() => navigate(`/addtoblockchain/${prod.product_id}`)}>
+                        Add to Blockchain
+                    </button>
+                    </td>
+                </tr>
+                ))
+            ) : (
+                <tr>
+                <td colSpan="3">No products available</td>
+                </tr>
+            )}
+            </tbody>
+
       </table>
 
       <br />

@@ -9,6 +9,8 @@ import Users from "./pages/Users";
 import Products from "./pages/Products";
 import Whitelist from "./pages/Whitelist";
 import NFC from "./pages/NFC";
+import AddProduct from "./pages/AddProduct";
+import AddToBlockchain from "./pages/AddToBlockchain";
 
 function App() {
   return (
@@ -56,9 +58,7 @@ function App() {
               </PrivateRoute>
             }
           />
-        </Routes>
-      </Router>
-      <Route
+          <Route
         path="/products"
         element={
           <PrivateRoute allowedRoles={["manufacturer", "admin"]}>
@@ -82,6 +82,9 @@ function App() {
           </PrivateRoute>
         }
       />
+        </Routes>
+      </Router>
+      
     </AuthProvider>
   );
 }

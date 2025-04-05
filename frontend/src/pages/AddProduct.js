@@ -33,7 +33,7 @@ const AddProduct = () => {
     };
 
     const res = await addproduct(newProduct);
-    if (res.success) {
+    if (res.status === "success") {
       alert("Product added!");
       navigate("/products");
     } else {

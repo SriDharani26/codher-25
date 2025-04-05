@@ -12,13 +12,13 @@ export const loginUser = async (email, password) => {
 
 // Fetch all products
 export const product = async () => {
-  const res = await fetch(`${BASE_URL}/products`);
+  const res = await fetch(`${BASE_URL}/product`);
   return await res.json();
 };
 
 // Add a new product
 export const addproduct = async (productData) => {
-  const res = await fetch(`${BASE_URL}/products`, {
+  const res = await fetch(`${BASE_URL}/addproduct`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(productData),

@@ -10,6 +10,8 @@ load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
+CORS(app, origins=["http://localhost:3000"])
+
 
 mongo_connection_string = os.getenv('MONGO_CONNECTION_STRING')
 if not mongo_connection_string:
@@ -61,12 +63,17 @@ def add_product():
     db.products.insert_one(product)
     return jsonify({"status": "success"}), 201
 
-@app.route('/products', methods=['GET'])
-def get_products():
+
+@app.route('/product', methods=['GET'])
+def get_product():
+    
     products = list(db.products.find({}, {'_id': 0}))
+    # print(products)
     if not products:
         return jsonify({"error": "No products found"}), 404
+
     return jsonify(products), 200
+
 
 
 
