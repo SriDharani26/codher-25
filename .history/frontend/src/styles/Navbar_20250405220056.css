@@ -1,0 +1,37 @@
+/* Navbar.css (or add this to your existing CSS file) */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #282c34;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.navbar-left h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar-right svg {
+  font-size: 24px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.navbar-right svg:hover {
+  color: #ffa500; /* Change color on hover */
+}

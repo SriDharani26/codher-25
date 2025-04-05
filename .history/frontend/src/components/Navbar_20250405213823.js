@@ -1,19 +1,22 @@
 // src/components/Navbar.js
+
 import React from "react";
-import { FaUserPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
-function Navbar() {
+const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-left">
-        <h1>PharmaChain</h1>
+        <h1>BrandName</h1> {/* You can change this to your website's name */}
       </div>
       <div className="navbar-right">
-        <FaUserPlus size={24} />
+        <Link to="/login" className="sign-up-button">
+          Sign Up
+        </Link>
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

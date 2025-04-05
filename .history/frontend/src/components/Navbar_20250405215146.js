@@ -1,8 +1,7 @@
 // src/components/Navbar.js
 import React from "react";
 import { FaUserPlus } from "react-icons/fa";
-import "../styles/Navbar.css";
-
+import "./styles/Navbar.css;"; 
 function Navbar() {
   return (
     <div className="navbar">

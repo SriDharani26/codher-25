@@ -19,7 +19,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route
             path="/dashboard"
             element={
@@ -61,31 +61,32 @@ function App() {
             }
           />
           <Route
-            path="/products"
-            element={
-              <PrivateRoute allowedRoles={["manufacturer", "admin"]}>
-                <Products />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/addproduct"
-            element={
-              <PrivateRoute allowedRoles={["manufacturer"]}>
-                <AddProduct />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/addtoblockchain/:id"
-            element={
-              <PrivateRoute allowedRoles={["manufacturer"]}>
-                <AddToBlockchain />
-              </PrivateRoute>
-            }
-          />
+        path="/products"
+        element={
+          <PrivateRoute allowedRoles={["manufacturer", "admin"]}>
+            <Products />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/addproduct"
+        element={
+          <PrivateRoute allowedRoles={["manufacturer"]}>
+            <AddProduct />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/addtoblockchain/:id"
+        element={
+          <PrivateRoute allowedRoles={["manufacturer"]}>
+            <AddToBlockchain />
+          </PrivateRoute>
+        }
+      />
         </Routes>
       </Router>
+      
     </AuthProvider>
   );
 }

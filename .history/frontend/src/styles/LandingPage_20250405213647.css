@@ -1,0 +1,41 @@
+.landing-container {
+    display: flex;
+    flex-direction: column; /* Align the content vertically */
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center the content vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #f4f4f4; /* Optional background color */
+  }
+  
+  h2 {
+    margin-bottom: 20px; /* Space between the title and the rectangles */
+  }
+  
+  .rectangles-container {
+    display: flex;
+    flex-direction: column; /* Stack the rectangles vertically */
+    gap: 20px; /* Space between the rectangles */
+  }
+  
+  .rectangle {
+    width: 200px; /* Set width for each rectangle */
+    height: 100px; /* Set height for each rectangle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4CAF50; /* Background color for the rectangles */
+    border-radius: 8px; /* Optional rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+  }
+  
+  .rectangle a {
+    color: white; /* Link text color */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 18px; /* Text size inside the rectangle */
+    font-weight: bold; /* Bold text for the links */
+  }
+  
+  .rectangle a:hover {
+    text-decoration: underline; /* Underline text on hover */
+  }
+  
