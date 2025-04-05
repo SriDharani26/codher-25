@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { product } from "../services/api"; // Fetches product list
+import { product } from "../services/api";
 
-const Products = () => {
+const ProductList = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await product();
-      setProducts(res);
-    };
-    fetchProducts();
+    product()
+      .then(res => setProducts(res.data))
+      .catch(err => console.error("Error fetching products:", err));
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "30px" }}>
       <h2>Product List</h2>
       <table border="1" cellPadding="10">
         <thead>
           <tr>
             <th>Product ID</th>
             <th>Product Name</th>
-            <th>Action</th>
+            <th>Add to Blockchain</th>
           </tr>
         </thead>
         <tbody>
@@ -31,11 +29,7 @@ const Products = () => {
               <td>{prod.product_id}</td>
               <td>{prod.product_name}</td>
               <td>
-                <button
-                  onClick={() =>
-                    navigate(`/addtoblockchain/${prod.product_id}`)
-                  }
-                >
+                <button onClick={() => navigate(`/add-to-blockchain/${prod.product_id}`)}>
                   Add to Blockchain
                 </button>
               </td>
@@ -43,11 +37,10 @@ const Products = () => {
           ))}
         </tbody>
       </table>
-
       <br />
-      <button onClick={() => navigate("/addproduct")}>Add Product</button>
+      <button onClick={() => navigate("/add-product")}>Add New Product</button>
     </div>
   );
 };
 
-export default Products;
+export default ProductList;
