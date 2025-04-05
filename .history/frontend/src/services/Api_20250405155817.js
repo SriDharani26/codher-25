@@ -36,8 +36,19 @@ export const addtoblockchain = async (data) => {
   return await res.json();
 };
 
+//Adding a new route to whitelist products
+export const addWhitelistProduct = async (productData) => {
+  const res = await fetch(`${BASE_URL}/whitelist`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(productData),
+  });
+  return await res.json();
+};
+  
+  // Get all whitelisted products
 export const whitelistProducts = async () => {
-    const res = await fetch(`${BASE_URL}/whitelist`);
+    const res = await fetch(`${BASE_URL}/whitelist/products`);
     return await res.json();
   };
   
@@ -52,6 +63,3 @@ export const whitelistProducts = async () => {
     const res = await fetch(`${BASE_URL}/users`);
     return await res.json();
   };
-
-
-  
