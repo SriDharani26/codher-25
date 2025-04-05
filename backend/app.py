@@ -24,7 +24,7 @@ print("Connected to MongoDB")
 
 @app.route('/')
 def home():
-    return "Brotatoes for the win!"
+    return "NullVoid for the win!"
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -102,15 +102,32 @@ def create_user():
     return jsonify({"status": "success"}), 201
 
 
+@app.route('/getusers', methods=['GET'])
+def get_user():
+    user = list(db.users.find({}, {"_id": 0}))
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify(user), 200
+
+
 @app.route('/product', methods=['GET'])
 def get_product():
-    
-    products = list(db.products.find({}, {'_id': 0}))
-    # print(products)
+   
+    whitelisted_products = db.whitelist.distinct("product_id")
+
+  
+    products = list(db.products.find(
+        {"product_id": {"$nin": whitelisted_products}},
+        {'_id': 0}
+    ))
+
     if not products:
-        return jsonify({"error": "No products found"}), 404
+        return jsonify({"error": "No unwhitelisted products found"}), 404
 
     return jsonify(products), 200
+
 
 @app.route('/whitelist', methods=['GET'])
 def get_whitelist_products():
@@ -147,6 +164,37 @@ def add_to_blockchain(product_id):
 
     return jsonify({"status": "Product marked as added to blockchain"}), 200
 
+
+@app.route('/addRoute', methods=['POST'])  # Fixed typo: method -> methods
+def addRoute():
+    data = request.get_json()
+    print(data)
+    product_id = data.get('productId')
+    route = data.get('route')  # This is a dictionary mapping userId (email) -> {nfc: false, sent: false}
+
+    if not product_id or not route:
+        return jsonify({"error": "productId and route are required"}), 400
+
+    existing = db.whitelist.find_one({"product_id": product_id})
+
+    if existing:
+        updated_route = existing.get("route", {})
+        updated_route.update(route)
+
+        db.whitelist.update_one(
+            {"product_id": product_id},
+            {"$set": {"route": updated_route}}
+        )
+    else:
+        # Insert new document
+        db.whitelist.insert_one({
+            "product_id": product_id,
+            "route": route
+        })
+
+    return jsonify({"status": "Route added/updated successfully"}), 200
+
+    
     
 
 if __name__ == '__main__':

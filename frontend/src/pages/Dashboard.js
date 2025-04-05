@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { createUser, product, addRoute } from "../services/api"; // Importing the function from api.js
+import React, { useState, useEffect, use } from "react";
+import { createUser, product, addRoute, getUsers } from "../services/api"; // Importing the function from api.js
 
 const Dashboard = () => {
   // Create User States
@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [role, setRole] = useState("other");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
+
+
 
   // Add Route States
   const [routeLocations, setRouteLocations] = useState(0);
@@ -57,12 +59,25 @@ const Dashboard = () => {
         alert("Error fetching products: " + error.message);
       });
   }, []);
+  console.log("Products:", products);
 
-  // Handle Add Route Form Submission
+  useEffect(() => {
+
+    getUsers()
+      .then((response) => {
+        setUsers(response);
+      })    
+      .catch((error) => {
+        alert("Error fetching users: " + error.message);
+      });
+  }, []);
+  
+  
+
+
   const handleAddRoute = (productId) => {
     const route = {};
 
-    // Create route data based on selected users
     selectedUsers.forEach((userId, index) => {
       route[userId] = {
         nfc: false,
@@ -156,7 +171,7 @@ const Dashboard = () => {
                 <option value="">Select User</option>
                 {users.map((user) => (
                   <option key={user.userId} value={user.userId}>
-                    {user.email} (ID: {user.userId})
+                    {user.email}
                   </option>
                 ))}
               </select>
@@ -169,11 +184,11 @@ const Dashboard = () => {
         <h3>Products</h3>
         <ul>
           {products.map((product) => (
-            <li key={product.productId}>
-              {product.productName}
+            <li key={product.product_id}>
+              {product.product_name}
               <button
                 onClick={() => {
-                  handleAddRoute(product.productId);
+                  handleAddRoute(product.product_id);
                 }}
               >
                 Add Route

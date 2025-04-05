@@ -49,7 +49,7 @@ export const getWhitelistByProductId = async (productId) => {
 
 // Get all users
 export const getUsers = async () => {
-  const res = await fetch(`${BASE_URL}/users`);
+  const res = await fetch(`${BASE_URL}/getusers`);
   return await res.json();
 };
 
@@ -85,7 +85,7 @@ export const createUser = async (userData) => {
 
 //Add route to product
 export const addRoute = async (routeData) => {
-  const res = await fetch(`${BASE_URL}/addroute`, {
+  const res = await fetch(`${BASE_URL}/addRoute`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
