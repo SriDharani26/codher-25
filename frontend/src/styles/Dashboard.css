@@ -1,0 +1,116 @@
+.dashboard {
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark base */
+    color: #e0e0e0; /* Light text for contrast */
+  }
+  
+  /* Title Styling */
+  h1 {
+    margin-bottom: 1.5rem;
+    color: #8ddc39; /* Match landing page highlight */
+  }
+  
+  /* Card Design for Dark Theme */
+  .card {
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(141, 220, 57, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    font-family: 'Poppins', sans-serif;
+    color: #f0f0f0;
+  }
+  
+  /* Form Labels */
+  .form label,
+  .route-users label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    color: #cfcfcf;
+  }
+  
+  /* Input and Select Styling */
+  input,
+  select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.4rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #2c2c2c;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Button Styling for Dark Theme */
+  button {
+    padding: 0.75rem 1.5rem;
+    background-color: #8ddc39;
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(141, 220, 57, 0.3);
+  }
+  
+  button:hover {
+    background-color: #76c123;
+  }
+  
+  /* Password Display */
+  .password-display {
+    margin-top: 1rem;
+    color: #8ddc39;
+    font-weight: bold;
+  }
+  
+  /* Product List Styling */
+  .product-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .product-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    background: #263c20;
+    color: #d0ffd0;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px rgba(141, 220, 57, 0.1);
+  }
+  
+  /* Table (Sensor Section) Styling */
+  .sensor-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+  }
+  
+  .sensor-section th,
+  .sensor-section td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #333;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .sensor-section th {
+    background-color: #8ddc39;
+    color: #000;
+  }
+  
