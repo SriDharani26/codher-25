@@ -1,0 +1,76 @@
+/* AddProduct.css */
+.addproduct-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom left, #8bd327, #6fae15, #172901, #030500);
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .addproduct-card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .addproduct-card h2 {
+    text-align: center;
+    color: #446B0F;
+    margin-bottom: 25px;
+    font-size: 26px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    color: #172901;
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border 0.3s ease;
+  }
+  
+  .form-group input:focus {
+    border-color: #86C232;
+    outline: none;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background-color: #446B0F;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: 0 0 10px #4caf50a0;
+  }
+  
+  .submit-btn:hover {
+    background-color: #388e3c;
+    transform: scale(1.02);
+  }
+  
+  .submit-btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  

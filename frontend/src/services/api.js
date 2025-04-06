@@ -80,7 +80,7 @@ export const createUser = async (userData) => {
     throw new Error("Error creating user");
   }
 
-  return await res.json(); // Assuming the backend returns a JSON response
+  return await res.json(); 
 };
 
 //Add route to product
@@ -98,4 +98,13 @@ export const addRoute = async (routeData) => {
   }
 
   return await res.json();
+};
+
+//Tracking temp and humid data 
+export const getPISensorHistory = async () => {
+  const res = await fetch(`${BASE_URL}/coldchaintracking`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch Pi sensor history data");
+  }
+  return await res.json(); // Expected: [{ temperature: 25.1, humidity: 60.2, timestamp: "2025-04-06T10:00:00" }, ...]
 };

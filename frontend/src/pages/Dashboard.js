@@ -1,5 +1,6 @@
 import React, { useState, useEffect, use } from "react";
 import { createUser, product, addRoute, getUsers } from "../services/api"; // Importing the function from api.js
+import {getPISensorHistory } from "../services/api";
 
 const Dashboard = () => {
   // Create User States
@@ -9,7 +10,8 @@ const Dashboard = () => {
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
 
-
+  //Coldchain track 
+  const [sensorHistory, setSensorHistory] = useState([]);
 
   // Add Route States
   const [routeLocations, setRouteLocations] = useState(0);
@@ -61,6 +63,22 @@ const Dashboard = () => {
   }, []);
   console.log("Products:", products);
 
+  useEffect(() => {
+    const fetchSensorHistory = async () => {
+      try {
+        const data = await getPISensorHistory();
+        setSensorHistory(data);
+      } catch (error) {
+        console.error("Error fetching sensor history:", error.message);
+      }
+    };
+  
+    fetchSensorHistory();
+    const interval = setInterval(fetchSensorHistory, 1000); 
+    return () => clearInterval(interval); 
+  }, []);
+
+  
   useEffect(() => {
 
     getUsers()
@@ -197,6 +215,32 @@ const Dashboard = () => {
           ))}
         </ul>
       </div>
+      <div style={{ marginTop: "2rem", padding: "1rem", border: "1px solid #ccc", borderRadius: "5px" }}>
+  <h3>📡 Realtime Temperature & Humidity - PIxxx</h3>
+  {sensorHistory.length > 0 ? (
+    <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <thead>
+        <tr>
+          <th style={{ borderBottom: "1px solid #ddd" }}>Timestamp</th>
+          <th style={{ borderBottom: "1px solid #ddd" }}> Temperature (°C)</th>
+          <th style={{ borderBottom: "1px solid #ddd" }}> Humidity (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sensorHistory.map((entry, index) => (
+          <tr key={index}>
+            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{new Date(entry.timestamp).toLocaleTimeString()}</td>
+            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{entry.temperature}</td>
+            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{entry.humidity}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  ) : (
+    <p>Loading latest sensor data...</p>
+  )}
+</div>
+
     </div>
   );
 };
