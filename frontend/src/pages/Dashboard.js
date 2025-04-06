@@ -421,33 +421,55 @@ const Dashboard = () => {
             </li>
           ))}
         </ul>
-      </section>
+      </div>
+      <div style={{ marginTop: "2rem", padding: "1rem", border: "1px solid #ccc", borderRadius: "5px" }}>
+  <h3>📡 Realtime Temperature & Humidity - PIxxx</h3>
+  {sensorHistory.length > 0 ? (
+    <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <thead>
+        <tr>
+          <th style={{ borderBottom: "1px solid #ddd" }}>Timestamp</th>
+          <th style={{ borderBottom: "1px solid #ddd" }}> Temperature (°C)</th>
+          <th style={{ borderBottom: "1px solid #ddd" }}> Humidity (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sensorHistory.map((entry, index) => {
+          const tempExceeded = entry.temperature > 30;
+          const humidityExceeded = entry.humidity > 70;
+          const isAlert = tempExceeded || humidityExceeded;
 
-      <section className="card sensor-section">
-        <h3>Realtime Temperature & Humidity</h3>
-        {sensorHistory.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Timestamp</th>
-                <th>Temperature (°C)</th>
-                <th>Humidity (%)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sensorHistory.map((entry, index) => (
-                <tr key={index}>
-                  <td>{new Date(entry.timestamp).toLocaleTimeString()}</td>
-                  <td>{entry.temperature}</td>
-                  <td>{entry.humidity}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>Loading latest sensor data...</p>
-        )}
-      </section>
+          return (
+            <tr
+              key={index}
+              style={{
+                backgroundColor: isAlert ? "#ffdddd" : "transparent", // red tint if alert
+                color: isAlert ? "#b30000" : "inherit",
+                fontWeight: isAlert ? "bold" : "normal"
+              }}
+            >
+              <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+                {new Date(entry.timestamp).toLocaleTimeString()}
+              </td>
+              <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+                {entry.temperature}
+                {tempExceeded && <span> ⚠️</span>}
+              </td>
+              <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+                {entry.humidity}
+                {humidityExceeded && <span> ⚠️</span>}
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+
+    </table>
+  ) : (
+    <p>Loading latest sensor data...</p>
+  )}
+</div>
+
     </div>
   );
 };
