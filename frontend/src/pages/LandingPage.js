@@ -1,4 +1,4 @@
-// src/pages/LandingPage.js
+
 import React from "react";
 import Navbar from "../components/Navbar";
 import "../styles/LandingPage.css";
@@ -25,13 +25,12 @@ function LandingPage() {
               <button className="get-started-btn">Get Started</button>
             </div>
             <div className="hero-graphic">
-              {/* Illustration or graphic */}
               <img src={HeroIllustration} alt="Analytics" />
             </div>
           </div>
         </div>
 
-        {/* Other sections */}
+      
         <div className="section section-2">
   <div className="features-container">
     <div className="features-left">
@@ -61,7 +60,7 @@ function LandingPage() {
   </div>
 </div>
 
-        {/* Section 3: Call to Action */}
+     
 <div className="section section-3" style                                                
 ={{ 
   backgroundColor: "#1d1d1d", 
@@ -95,7 +94,7 @@ function LandingPage() {
   </p>
 </div>
 
-        {/* Section 4: Footer */}
+    
 <div className="section section-4" style={{
   backgroundColor: "#121212",
   color: "#ffffff",
