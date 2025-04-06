@@ -100,11 +100,33 @@ export const addRoute = async (routeData) => {
   return await res.json();
 };
 
-//Tracking temp and humid data 
+// src/api/coldchain.js
+
+// Replace with your actual channel and field info
+const CHANNEL_ID = "2907093";
+const API_KEY = "MW1AYO6C7GK5F0LM";  // field1 is temp, field2 is humidity
+
 export const getPISensorHistory = async () => {
-  const res = await fetch(`${BASE_URL}/coldchaintracking`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch Pi sensor history data");
+  try {
+    const url = `https://api.thingspeak.com/channels/${CHANNEL_ID}/feeds.json?results=5&api_key=${API_KEY}`;
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch ThingSpeak data");
+    }
+
+    const data = await res.json();
+    const feeds = data.feeds;
+
+    const formattedData = feeds.map(entry => ({
+      temperature: parseFloat(entry.field1),
+      humidity: parseFloat(entry.field2),
+      timestamp: entry.created_at,
+    }));
+
+    return formattedData;
+  } catch (err) {
+    console.error("❌ Error fetching from ThingSpeak:", err);
+    return [];
   }
-  return await res.json(); // Expected: [{ temperature: 25.1, humidity: 60.2, timestamp: "2025-04-06T10:00:00" }, ...]
 };
