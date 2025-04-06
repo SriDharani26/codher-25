@@ -227,14 +227,36 @@ const Dashboard = () => {
         </tr>
       </thead>
       <tbody>
-        {sensorHistory.map((entry, index) => (
-          <tr key={index}>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{new Date(entry.timestamp).toLocaleTimeString()}</td>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{entry.temperature}</td>
-            <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>{entry.humidity}</td>
-          </tr>
-        ))}
+        {sensorHistory.map((entry, index) => {
+          const tempExceeded = entry.temperature > 30;
+          const humidityExceeded = entry.humidity > 70;
+          const isAlert = tempExceeded || humidityExceeded;
+
+          return (
+            <tr
+              key={index}
+              style={{
+                backgroundColor: isAlert ? "#ffdddd" : "transparent", // red tint if alert
+                color: isAlert ? "#b30000" : "inherit",
+                fontWeight: isAlert ? "bold" : "normal"
+              }}
+            >
+              <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+                {new Date(entry.timestamp).toLocaleTimeString()}
+              </td>
+              <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+                {entry.temperature}
+                {tempExceeded && <span> ⚠️</span>}
+              </td>
+              <td style={{ padding: "0.5rem", borderBottom: "1px solid #eee" }}>
+                {entry.humidity}
+                {humidityExceeded && <span> ⚠️</span>}
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
+
     </table>
   ) : (
     <p>Loading latest sensor data...</p>
