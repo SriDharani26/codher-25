@@ -11,6 +11,7 @@ const Products = () => {
     const fetchProducts = async () => {
       const res = await product();
       setProducts(res);
+      console.log("Products fetched:", res);
     };
     fetchProducts();
   }, []);

@@ -42,23 +42,19 @@ function LandingPage() {
     </div>
     <div className="features-right">
       <div className="feature-card card-1">
-        <h3>Bla</h3>
-        <p><span>Inter</span><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <h3>Iot Analytics</h3>
         <span className="arrow">↗</span>
       </div>
       <div className="feature-card card-2">
-        <h3>Blc</h3>
-        <p><span>Poppins</span><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-        <span className="arrow">↗</span>
+        <h3>Security</h3>
+       <span className="arrow">↗</span>
       </div>
       <div className="feature-card card-3">
-        <h3>HU</h3>
-        <p><span>Poppins</span><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-        <span className="arrow">↗</span>
+        <h3>Distributor Friendly</h3>
+      <span className="arrow">↗</span>
       </div>
       <div className="feature-card card-4">
-        <h3>Hu</h3>
-        <p><span>Plus Jakarta Sans</span><br />Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        <h3>Smart contracts</h3>
         <span className="arrow">↗</span>
       </div>
     </div>

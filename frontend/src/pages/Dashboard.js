@@ -259,6 +259,8 @@ import {
 import "../styles/Dashboard.css";
 
 const Dashboard = () => {
+  const TEMPERATURE_ALERT_THRESHOLD = -20;
+
   const [email, setEmail] = useState("");
   const [private_key, setPrivateKey] = useState("");
   const [role, setRole] = useState("other");
@@ -301,6 +303,14 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
+    const latest = sensorHistory[sensorHistory.length - 1];
+    if (latest && latest.temperature > TEMPERATURE_ALERT_THRESHOLD) {
+      triggerAlert(latest);
+    }
+  }, [sensorHistory]);
+  
+
+  useEffect(() => {
     const fetchSensorHistory = async () => {
       try {
         const data = await getPISensorHistory();
@@ -330,6 +340,27 @@ const Dashboard = () => {
       .then(() => alert("Route added successfully!"))
       .catch((error) => alert("Error adding route: " + error.message));
   };
+
+  const triggerAlert = (data) => {
+    alert("⚠️ Temperature Alert! Immediate attention needed.");
+  };
+
+  const isContinuousRise = (history) => {
+    if (history.length < 3) return false;
+    const len = history.length;
+    return (
+      history[len - 1].temperature > history[len - 2].temperature &&
+      history[len - 2].temperature > history[len - 3].temperature
+    );
+  };
+  
+  useEffect(() => {
+    if (isContinuousRise(sensorHistory)) {
+      triggerAlert(sensorHistory[sensorHistory.length - 1]);
+    }
+  }, [sensorHistory]);
+  
+  
 
   return (
     <div className="dashboard">
@@ -435,14 +466,20 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {sensorHistory.map((entry, index) => (
-                <tr key={index}>
-                  <td>{new Date(entry.timestamp).toLocaleTimeString()}</td>
-                  <td>{entry.temperature}</td>
-                  <td>{entry.humidity}</td>
-                </tr>
-              ))}
-            </tbody>
+  {sensorHistory.map((entry, index) => (
+    <tr
+      key={index}
+      style={{
+        backgroundColor: entry.temperature > -20 ? 'rgba(255, 0, 0, 0.2)' : 'transparent'
+      }}
+    >
+      <td>{new Date(entry.timestamp).toLocaleTimeString()}</td>
+      <td>{entry.temperature}</td>
+      <td>{entry.humidity}</td>
+    </tr>
+  ))}
+</tbody>
+
           </table>
         ) : (
           <p>Loading latest sensor data...</p>
