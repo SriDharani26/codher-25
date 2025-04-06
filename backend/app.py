@@ -221,6 +221,40 @@ def update_product(prodId):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
+    
+@app.route('/transfer/<product_id>', methods=['POST'])
+def transfer(product_id):
+ 
+    # Find the product document by product_id
+    product = db.whitelist.find_one({"product_id": product_id})
+
+    if not product:
+        return jsonify({"error": "Product ID not found in whitelist"}), 404
+
+    # Get the 'route' data (users and their nfc/sent status)
+    route = product.get('route', {})
+
+    # Loop through the users to find the first one with 'nfc' and 'sent' set to False
+    for user, status in route.items():
+        if not status['nfc'] and not status['sent']:
+            # Update the user's NFC and Sent status to True
+            route[user]['nfc'] = True
+            route[user]['sent'] = True
+
+            # Update the product document with the new route
+            db.whitelist.update_one(
+                {"product_id": product_id},
+                {"$set": {"route": route}}
+            )
+
+            # Respond with success and updated user details
+            return jsonify({
+                "message": "Transfer successful"
+            }), 200
+
+    return jsonify({"error": "No users with NFC and Sent status as False"}), 404
+
+    
 
 if __name__ == '__main__':
     app.config['DEBUG'] = False

@@ -182,6 +182,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import ProductVerification from "../ProductVerification.json";
+import { transferOwnershipApi  } from "../services/api";
 import QRCode from "react-qr-code";
 import axios from "axios";
 
@@ -271,6 +272,8 @@ const TransferOwnership = () => {
       await updateNfcAndSentStatus(prodId);
       
       setStatus("✅ Ownership transferred");
+       await transferOwnershipApi(prodId);
+
     } catch (err) {
       setStatus("❌ Transfer failed");
     }

@@ -83,6 +83,23 @@ export const createUser = async (userData) => {
   return await res.json(); 
 };
 
+
+//for transfering ownership
+export const transferOwnership = async (data) => {
+  const res = await fetch(`${BASE_URL}/transfer/${data}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    throw new Error("Error transferring ownership");
+  }
+
+  return await res.json();
+}
 //Add route to product
 export const addRoute = async (routeData) => {
   const res = await fetch(`${BASE_URL}/addRoute`, {
