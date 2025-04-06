@@ -85,7 +85,7 @@ export const createUser = async (userData) => {
 
 
 //for transfering ownership
-export const transferOwnership = async (data) => {
+export const transferOwnershipApi = async (data) => {
   const res = await fetch(`${BASE_URL}/transfer/${data}`, {
     method: "POST",
     headers: {
