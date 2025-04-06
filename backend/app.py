@@ -194,7 +194,32 @@ def addRoute():
 
     return jsonify({"status": "Route added/updated successfully"}), 200
 
-    
+@app.route('/whitelist/products/<prodId>', methods=['PUT'])
+def update_product(prodId):
+    try:
+        # Get the updated NFC and sent values from the request JSON body
+        data = request.get_json()
+        nfc = data.get('nfc')
+        sent = data.get('sent')
+
+        # Validate the required fields
+        if nfc is None or sent is None:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        # Update the product with the given product_id (prodId)
+        result = db.whitelist.update_one(
+            {"product_id": prodId},  # Find product by product_id
+            {"$set": {"nfc": nfc, "sent": sent}}  # Set new values for nfc and sent
+        )
+
+        # Check if the update was successful
+        if result.matched_count == 0:
+            return jsonify({"error": "Product not found"}), 404
+
+        return jsonify({"message": "Product updated successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
     
 
 if __name__ == '__main__':
